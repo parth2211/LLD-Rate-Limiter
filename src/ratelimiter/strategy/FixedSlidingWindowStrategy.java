@@ -2,7 +2,7 @@ package ratelimiter.strategy;
 
 public class FixedSlidingWindowStrategy implements RateLimiterStrategyInterface{
     @Override
-    public boolean isApiRequestAllowed(double noOfHits, double timeStamp) {
-        return false;
+    public boolean isApiRequestAllowed(Object dataStructure, double noOfHits, double timeStamp) {
+
     }
 }

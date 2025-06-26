@@ -1,6 +1,10 @@
 package ratelimiter.ratelimitregistry.registry;
 
+import ratelimiter.datastructure.Pair;
+import ratelimiter.entity.RateLimitParameters;
 import ratelimiter.ratelimitregistry.ratelimits.ApiLimit;
+
+import java.util.List;
 
 public interface RateLimitRegistry {
 
@@ -8,7 +12,7 @@ public interface RateLimitRegistry {
 
     public void removeRateLimiter(ApiLimit apiLimit);
 
-    public boolean checkRateLimit(String endPoint, Object extraCondition, long hitCount, long timeStamp);
+    public boolean checkRateLimitApplicability(String endPoint);
 
-    public void hitRateLimit(String endPoint, Object extraCondition, long hitCount, long timeStamp);
+    public List<Pair<Object, Pair<Long, Long>>> getRateLimitDataList(String endPoint, RateLimitParameters extraCondition);
 }

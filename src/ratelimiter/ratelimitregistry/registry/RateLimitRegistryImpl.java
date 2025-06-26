@@ -1,5 +1,7 @@
 package ratelimiter.ratelimitregistry.registry;
 
+import ratelimiter.datastructure.Pair;
+import ratelimiter.entity.RateLimitParameters;
 import ratelimiter.ratelimitregistry.ratelimits.ApiLimit;
 
 import java.util.ArrayList;
@@ -20,16 +22,24 @@ public class RateLimitRegistryImpl implements RateLimitRegistry{
     }
 
     @Override
-    public boolean checkRateLimit(String endPoint, Object extraCondition, long hitCount, long timeStamp) {
+    public boolean checkRateLimitApplicability(String endPoint) {
         for (ApiLimit apiLimit : apiLimitList) {
             if(apiLimit.contains(endPoint)) {
-
+                return true;
             }
         }
+        return false;
     }
 
     @Override
-    public void hitRateLimit(String endPoint, Object extraCondition, long hitCount, long timeStamp) {
+    public List<Pair<Object, Pair<Long, Long>>> getRateLimitDataList(String endPoint, RateLimitParameters extraCondition) {
+        List<Pair<Object, Pair<Long, Long>>> list = new ArrayList<>();
 
+        for(ApiLimit apiLimit: apiLimitList) {
+            if(apiLimit.contains(endPoint)) {
+                list.add(apiLimit.getRateLimitData(endPoint, extraCondition));
+            }
+        }
+        return list;
     }
 }

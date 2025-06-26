@@ -13,7 +13,7 @@ public class RateLimiterService {
     }
 
     public boolean isApiRequestAllowed(long userId, String apiEndPoint, long noOfHits, long timeStamp) {
-        
+
     }
 
     public void setRateLimiterStrategy(RateLimiterStrategyInterface rateLimiterStrategy) {

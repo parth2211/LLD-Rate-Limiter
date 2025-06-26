@@ -1,4 +1,4 @@
-package ratelimiter.ratelimitregistry.ratelimit;
+package ratelimiter.ratelimitregistry.ratelimits;
 
 import ratelimiter.datastructure.Pair;
 
@@ -10,9 +10,11 @@ public class CommonApiLimit implements ApiLimit{
 
     Map<String, Deque<Pair<Long, Long>>> rateLimiterDeque = new HashMap<>();
 
+    Map<String, Pair<Long, Long>> maxHitCountPerTimeUnit;
+
     @Override
     public boolean contains(String endPoint) {
-        //rateLimiterDeque.containsKey(endPoint);
+        return rateLimiterDeque.containsKey(endPoint);
     }
 
     @Override

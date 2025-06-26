@@ -6,6 +6,10 @@ public class Location {
     Long longitude;
     Long latitude;
 
+    public Location(String cityName) {
+        this.cityName = cityName;
+    }
+
     public Long getId() {
         return id;
     }
